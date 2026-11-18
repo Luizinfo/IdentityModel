@@ -1,13 +1,19 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Authors>Dominick Baier;Brock Allen</Authors>
-    <Description>OpenID Connect &amp; OAuth 2.0 client library</Description>
-    <PackageId>IdentityModel</PackageId>
-    <PackageTags>OAuth2;OAuth 2.0;OpenID Connect;Security;Identity;IdentityServer</PackageTags>
+    <Authors>Luiz Antonio</Authors>
+    <Copyright>Copyright 2017-2018 Brock Allen &amp; Dominick Baier</Copyright>
+    <Description>ZinfoFramework OpenID Connect and OAuth 2.0 client library; an independent continuation maintained by Luiz Antonio, without upstream endorsement.</Description>
+    <PackageId>ZinfoFramework.IdentityModel</PackageId>
+    <PackageVersion>10.0.0</PackageVersion>
+    <Version>10.0.0</Version>
+    <PackageTags>ZinfoFramework;OAuth2;OAuth 2.0;OpenID Connect;Security;Identity</PackageTags>
     <PackageIcon>icon.jpg</PackageIcon>
-    <PackageProjectUrl>https://github.com/IdentityModel/IdentityModel</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/Luizinfo/IdentityModel</PackageProjectUrl>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/Luizinfo/IdentityModel.git</RepositoryUrl>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageReleaseNotes>ZinfoFramework.IdentityModel 10.0.0 is the first ZinfoFramework release of this independent continuation. It targets only .NET 10; the IdentityModel assembly, namespaces, and public APIs are preserved. See https://github.com/Luizinfo/IdentityModel/blob/main/CHANGELOG.md for migration notes.</PackageReleaseNotes>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <Nullable>enable</Nullable>
     <LangVersion>latest</LangVersion>
@@ -19,6 +25,9 @@
   <ItemGroup>
     <None Include="../icon.jpg" Pack="true" Visible="false" PackagePath="" />
     <None Include="../README.md" Pack="true" PackagePath=""/>
+    <None Include="../LICENSE" Pack="true" PackagePath="" />
+    <None Include="../NOTICE.md" Pack="true" PackagePath="" />
+    <None Include="../CHANGELOG.md" Pack="true" PackagePath="" />
   </ItemGroup>
 
   <!--Strong Naming-->
@@ -35,28 +44,13 @@
     <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
   </PropertyGroup>
 
-  <!--Conditional compilation-->
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;net6.0</TargetFrameworks>
-  </PropertyGroup>
-  <PropertyGroup Condition="$([MSBuild]::IsOSPlatform('Windows'))">
-    <TargetFrameworks>net462;net472;$(TargetFrameworks)</TargetFrameworks>
+    <TargetFramework>net10.0</TargetFramework>
   </PropertyGroup>
   
   <ItemGroup>
     <PackageReference Include="minver" Version="5.0.0" PrivateAssets="All" />
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All" />
-  </ItemGroup>
-
-  <!--Conditional Package references -->
-  
-  <!-- System.Text.Json is automatically included in net6.0, so we don't take an explicit dependency on it in the net6.0 build. -->
-  <ItemGroup Condition="'$(TargetFramework)' != 'net6.0'">
-    <PackageReference Include="System.Text.Json" Version="8.0.0" />
-  </ItemGroup>
-	
-  <ItemGroup Condition=" '$(TargetFramework)' == 'net462' or '$(TargetFramework)' == 'net472'">
-    <Reference Include="System.Net.Http" />
   </ItemGroup>
 
   <Target Name="SetAssemblyVersion" AfterTargets="MinVer">

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.IO;
 using System.Threading.Tasks;
 
@@ -10,6 +10,7 @@ namespace build
     internal static class Program
     {
         private const string packOutput = "./artifacts";
+        private const string packageVersion = "10.0.0";
         private const string envVarMissing = " environment variable is missing. Aborting.";
 
         private static class Targets
@@ -57,7 +58,7 @@ namespace build
 
             Target(Targets.Pack, DependsOn(Targets.Build, Targets.CleanPackOutput), () =>
             {
-                Run("dotnet", $"pack ./src/IdentityModel.csproj -c Release -o {Directory.CreateDirectory(packOutput).FullName} --no-build --nologo");
+                Run("dotnet", $"pack ./src/IdentityModel.csproj -c Release -o {Directory.CreateDirectory(packOutput).FullName} --no-build --nologo -p:MinVerVersionOverride={packageVersion}");
             });
 
             Target(Targets.SignPackage, DependsOn(Targets.Pack, Targets.RestoreTools), () =>

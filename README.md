@@ -1,35 +1,42 @@
-## About IdentityModel
+# ZinfoFramework.IdentityModel
 
-IdentityModel is a .NET library for claims-based identity, OAuth 2.0 and OpenID Connect. 
+> [!IMPORTANT]
+> This repository and package are an independent continuation of the historical IdentityModel project, maintained by Luiz Antonio under the ZinfoFramework name. They are not endorsed by, sponsored by, or operationally maintained by the original upstream authors or Duende Software.
 
-> [!IMPORTANT]  
-> `IdentityModel` is being rebranded to `Duende.IdentityModel` and henceforth will be managed 
-> in our [FOSS repository](https://github.com/DuendeSoftware/foss) under the same Apache2 licence.
->  - Please update your nuget package references to the [new package](https://www.nuget.org/packages/Duende.IdentityModel).
->  - Outstanding pull requests and issues will be ported or closed.
+ZinfoFramework.IdentityModel is a .NET library for claims-based identity, OAuth 2.0, and OpenID Connect. It provides request and response types, HTTP extension methods, protocol constants, and convenience APIs for common identity operations.
 
-It provides an object model to interact with the endpoints defined in the various OAuth
-and OpenId Connect specifications in the form of:
-- types to represent the requests and responses
-- extension methods to invoke requests
-- constants defined in the specifications, such as standard scope, claim, and parameter names
-- other convenience methods for performing common identity related operations
+## Package identity and compatibility
 
-IdentityModel targets [.NET Standard 2.0](https://learn.microsoft.com/en-us/dotnet/standard/net-standard?tabs=net-standard-2-0), 
-making it suitable for .NET and .NET Framework.
+| Historical package | Current package |
+| --- | --- |
+| `IdentityModel` | `ZinfoFramework.IdentityModel` |
 
-For more documentation, please visit [readthedocs](https://identitymodel.readthedocs.io).
+Install version 10.0.0:
 
-## Related Packages
+```shell
+dotnet add package ZinfoFramework.IdentityModel --version 10.0.0
+```
 
-- Certified OIDC client library for native apps: [IdentityModel.OidcClient](https://www.nuget.org/packages/IdentityModel.OidcClient)
-- Id token validator for IdentityModel.OidcClient based on the Microsoft JWT handler: [IdentityModel.OidcClient.IdentityTokenValidator](https://www.nuget.org/packages/IdentityModel.OidcClient.IdentityTokenValidator)
-- [DPoP](https://datatracker.ietf.org/doc/html/rfc9449) extensions for IdentityModel.OidcClient: [IdentityModel.OidcClient.DPoP ](https://www.nuget.org/packages/IdentityModel.OidcClient.DPoP)
-- Authentication handler for introspection tokens: [IdentityModel.AspNetCore.OAuth2Introspection](https://www.nuget.org/packages/IdentityModel.AspNetCore.OAuth2Introspection)
+This release targets **.NET 10 only** (`net10.0`). The assembly name remains `IdentityModel`, and existing namespaces such as `IdentityModel`, `IdentityModel.Client`, and `IdentityModel.Jwk` are preserved.
 
-## Feedback
+## Breaking changes and migration
 
-IdentityModel is released as open source under the 
-[Apache 2.0 license](https://github.com/identitymodel/identitymodel/blob/main/LICENSE). 
-Bug reports and contributions are welcome at 
-[the GitHub repository](https://github.com/identitymodel/identitymodel).
+- Replace the NuGet package reference from `IdentityModel` to `ZinfoFramework.IdentityModel`.
+- Upgrade the consuming project to `net10.0` or a compatible future target framework.
+- Do not change existing `using IdentityModel...` directives or assembly references; the namespaces and assembly name are intentionally unchanged.
+- Review the [changelog](https://github.com/Luizinfo/IdentityModel/blob/main/CHANGELOG.md) before upgrading.
+
+## Project resources
+
+- [Repository](https://github.com/Luizinfo/IdentityModel)
+- [Issues](https://github.com/Luizinfo/IdentityModel/issues)
+- [Contributing](https://github.com/Luizinfo/IdentityModel/blob/main/CONTRIBUTING.md)
+- [Security policy](https://github.com/Luizinfo/IdentityModel/blob/main/SECURITY.md)
+- [Support](https://github.com/Luizinfo/IdentityModel/blob/main/SUPPORT.md)
+- [Changelog](https://github.com/Luizinfo/IdentityModel/blob/main/CHANGELOG.md)
+- [Apache 2.0 license](https://github.com/Luizinfo/IdentityModel/blob/main/LICENSE)
+- [Attribution and provenance notice](https://github.com/Luizinfo/IdentityModel/blob/main/NOTICE.md)
+
+## Historical provenance and credits
+
+This continuation derives from the original [IdentityModel/IdentityModel repository](https://github.com/IdentityModel/IdentityModel). Historical credit belongs to Brock Allen, Dominick Baier, and the original contributors. Links and package names associated with that upstream project, including later Duende packages, are historical references only and are not support or migration destinations for this continuation. See [NOTICE.md](https://github.com/Luizinfo/IdentityModel/blob/main/NOTICE.md) for the full distinction between current package authorship and historical authorship.
